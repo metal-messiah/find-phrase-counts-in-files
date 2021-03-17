@@ -1,0 +1,14 @@
+{
+  "name": "new-relic-demo",
+  "version": "1.0.0",
+  "description": "Parses text files for their most common 3-word sequences",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Jordan Porter",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^7.1.0"
+  }
+}
