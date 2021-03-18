@@ -1,4 +1,3 @@
-const fs = require('fs');
 const readline = require('readline');
 
 /**
@@ -10,22 +9,27 @@ const readline = require('readline');
  */
 class PhraseParser {
   constructor(f, opts) {
-    this.file = f.file;
-    this.hanging = [];
-    this.lineReader = readline.createInterface(f.readStream);
-    this.opts = opts;
-    this.phrases = {};
-    this.rejecter = () => {};
+    return new Promise((resolve, reject) => {
+      if (!f || !f.file || !f.readStream || !opts) reject(new Error('Invalid Parameters'));
+      this.file = f.file;
+      this.hanging = [];
+      this.lineReader = readline.createInterface(f.readStream);
+      this.opts = opts;
+      this.phrases = {};
+      this.resolver = resolve;
+      this.rejecter = reject;
 
-    return this.start();
+      this.start();
+    });
   }
 
   cleanWords(str) {
     try {
       return str
         .toLowerCase()
-        .replace(/'/g, '')
-        .replace(/[\W_]+/g, ' ');
+        .replace(/[\n-]/g, ' ')
+        .replace(/[.,\/#!$%?'\^&\*;:{}=\_`~()]/g, '')
+        .replace(/\s{2,}/g, ' ');
     } catch (err) {
       this.rejecter(err);
     }
@@ -37,7 +41,7 @@ class PhraseParser {
         file: this.file,
         phrases: Object.entries(this.phrases)
           .sort(([key1, val1], [key2, val2]) => val2 - val1)
-          .slice(0, 99)
+          .slice(0, this.opts.limit)
           .map(([key, val]) => ({ phrase: key, count: val })),
       };
     } catch (err) {
@@ -79,17 +83,14 @@ class PhraseParser {
   }
 
   start() {
-    return new Promise((resolve, reject) => {
-      try {
-        this.rejecter = reject;
-        this.lineReader.on('line', line => this.handleChunk(line));
-        this.lineReader.on('close', () => {
-          resolve(this.getPhrases());
-        });
-      } catch (err) {
-        this.rejecter(err);
-      }
-    });
+    try {
+      this.lineReader.on('line', line => this.handleChunk(line));
+      this.lineReader.on('close', () => {
+        this.resolver(this.getPhrases());
+      });
+    } catch (err) {
+      this.rejecter(err);
+    }
   }
 }
 

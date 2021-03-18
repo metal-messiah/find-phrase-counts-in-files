@@ -1,0 +1,7 @@
+this-is-hypenated
+and
+broken
+this is a random set of text and lets find out what the most common phrases are.  I think the
+most common phrases will be a mystery until we go through and check that this is a valid test.  The most common phrases
+should include most, common, phrases, and this is a.  Contractions are don't can't and won't and shouldn't have an apostrophe.
+It handles unicode characters (eg. the ü in Süsse or ß in Straße).
