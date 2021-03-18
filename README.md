@@ -61,7 +61,7 @@ yarn test
 - Potentially run workers in children processes
 - Containerize
 - Test coverage reporting
-- More robust testing, including more mock files
+- More robust testing, including more mock files, null/sad path testing
 - Better way to mock control of commander argv handler
 
 ## Known bugs
