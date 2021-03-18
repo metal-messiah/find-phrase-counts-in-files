@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "sampleArgs": "node index.js --files ./mockdata/moby_dick.txt ./mockdata/random.txt",
-    "samplePipe": "cat ./mockdata/moby_dick.txt | node index.js --words 3 --limit 100"
+    "sampleArgs": "node index.js --files ./mockdata/moby_dick.txt ./mockdata/random.txt ./mockdata/frankenstein.txt ./mockdata/pride_and_prejudice.txt ./mockdata/great_gatsby.txt --words 5 --no-console",
+    "samplePipe": "cat ./mockdata/moby_dick.txt | node index.js --words 5 --limit 100"
   },
   "jest": {
     "collectCoverage": true,

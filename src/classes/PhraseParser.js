@@ -33,7 +33,7 @@ class PhraseParser {
       return str
         .toLowerCase()
         .replace(/[\n-]/g, ' ')
-        .replace(/[.,\/#!$%?'\^&\*;:{}=\_`~()]/g, '')
+        .replace(/[.,\/#!$%?'’“\^&\*;:{}=\_`~()]/g, '')
         .replace(/\s{2,}/g, ' ');
     } catch (err) {
       this.rejecter(err);
