@@ -63,6 +63,7 @@ yarn test
 - Test coverage reporting
 - More robust testing, including more mock files, null/sad path testing
 - Better way to mock control of commander argv handler
+- Add ability to output to stdout for more chaining
 
 ## Known bugs
 
