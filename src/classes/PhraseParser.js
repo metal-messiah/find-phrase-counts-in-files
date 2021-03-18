@@ -23,6 +23,11 @@ class PhraseParser {
     });
   }
 
+  /**
+   * Strips out newlines, extra characters and spaces from strings
+   * @param {String}
+   * @returns {String}
+   */
   cleanWords(str) {
     try {
       return str
@@ -35,6 +40,10 @@ class PhraseParser {
     }
   }
 
+  /**
+   * Sorts and returns a subset of phrases
+   * @returns {{file: String, phrases: {phrase: String, count: Number}[]}}
+   */
   getPhrases() {
     try {
       return {
@@ -49,6 +58,11 @@ class PhraseParser {
     }
   }
 
+  /**
+   * Cleans chunks and sends to parser method
+   * @param {String}
+   * @returns {void}
+   */
   handleChunk(line) {
     try {
       this.parsePhrases(this.cleanWords(line));
@@ -57,6 +71,11 @@ class PhraseParser {
     }
   }
 
+  /**
+   * Sliding window over string chunks to derive substring counts
+   * @param {String}
+   * @returns {void}
+   */
   parsePhrases(str) {
     try {
       // split the string chunk into indiv words in an array
@@ -82,6 +101,10 @@ class PhraseParser {
     }
   }
 
+  /**
+   * Sets up listeners for readStream events
+   * @returns {void}
+   */
   start() {
     try {
       this.lineReader.on('line', line => this.handleChunk(line));

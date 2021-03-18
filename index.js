@@ -1,3 +1,3 @@
-const parse = require('./parse');
+const parse = require('./src/parse');
 
 parse();

@@ -1,8 +1,7 @@
 const commander = require('commander');
 
 const init = (args = process.argv) => {
-  console.log('args', args);
-
+  // set up definitions for input args
   commander.option('-f, --files <files...>', 'ABSOLUTE Paths to the input file(s), space separated');
   commander.option('-l, --limit <limit>', 'Limits output file to number of rows', 100);
   commander.option('--no-console', 'Do not output results to the console');

@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 const commander = require('./options/commander');
 const PhraseParser = require('./classes/PhraseParser');
 const util = require('./util/util');
@@ -20,8 +21,7 @@ async function parse(args) {
         })
       );
       // write the output of the promises to a file or the console
-      const writeStream = fs.createWriteStream(opts.output, { encoding: 'utf-8' });
-      // phraseCounts.forEach(count => {
+      const writeStream = fs.createWriteStream(path.resolve(process.cwd(), opts.output), { encoding: 'utf-8' });
       if (opts.console) {
         phraseCounts.forEach(count => {
           console.log(count);
