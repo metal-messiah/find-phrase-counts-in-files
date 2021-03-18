@@ -12,7 +12,6 @@ const testStrings = [
 ];
 
 beforeEach(() => {
-  console.log('reset modules');
   jest.resetModules();
 });
 
@@ -27,7 +26,6 @@ describe('E2E -- Files as Input', () => {
       './mockdata/random.txt',
     ];
     parse(args).then(phraseCounts => {
-      console.log(phraseCounts);
       expect(phraseCounts.length).toEqual(2);
 
       const mobyDick = phraseCounts[0];
@@ -50,7 +48,6 @@ describe('E2E - stdin as input', () => {
     const stdin = require('mock-stdin').stdin();
 
     parse().then(phraseCounts => {
-      console.log('phraseCounts', phraseCounts[0].phrases);
       expect(phraseCounts.length).toEqual(1);
 
       expect(phraseCounts[0].phrases[0].phrase).toEqual('it should handle');
